@@ -4,45 +4,36 @@ import { FileText, Trash2 } from "lucide-react";
 import { Input } from "./ui/input";
 import { AutoComplete } from "./ui/autocomplete";
 
+type InputValue = string | number | undefined | null;;
 type TableInputField = FormFieldType;
-type Value = string | number | undefined | null;
+type TableInputValue = Array<Record<string, InputValue>>;
+
 
 interface TableInputProps {
-    onChange?: (data: Array<Record<string, Value>>) => void;
+    onChange?: (data: Array<Record<string, InputValue>>) => void;
     label?: string;
-    defaultValue?: Array<Record<string, Value>> | any;
+    defaultValue?: Array<Record<string, InputValue>> | any;
     fields: Array<TableInputField>;
 }
 
 const FormField: React.FC<{
     field: FormFieldType;
 }> = ({ field }) => {
-    const renderFieldByType = () => {
-        const commonProps = {
-            ...field,
-            name: field.name,
-            placeholder: field.placeholder,
-            required: field.required,
-            className: "border-none h-full py-1.5 px-2 rounded-none shadow-none mt-0"
-        };
 
-        switch (field.type) {
-            // case "text":
-            // return <Input type="text" {...commonProps} />;
-            case "number" | "float":
-                return <Input {...commonProps} />;
-            case "autocomplete":
-                return <AutoComplete {...field} className="py-1.5 px-2" />;
-            default:
-                return <Input type="text" {...commonProps} />;
-        }
+    const props = {
+        name: field.name,
+        onChange: field.onChange,
+        placeholder: field.placeholder,
+        required: field.required,
+        className: "border-none py-1.5 px-2 rounded-none shadow-none mt-0 ring-0",
     };
 
-    return (
-        <div>
-            {renderFieldByType()}
-        </div>
-    );
+    switch (field.type) {
+        case "autocomplete":
+            return <AutoComplete {...field} className="py-1.5 px-2" />;
+        default:
+            return <Input type="text" {...props} />;
+    }
 };
 
 const EmptyTable = () => {
@@ -58,38 +49,27 @@ const EmptyTable = () => {
     )
 }
 
-export const TableInput: React.FC<TableInputProps> = ({ fields, onChange }) => {
-    const [data, setData] = useState<Array<Record<string, string | number | undefined | null>>>([]);
+export const TableInput: React.FC<TableInputProps> = ({ fields }) => {
+    const [data, setData] = useState<TableInputValue>([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
 
-    const handleAdd = () => {
-        setData([...data, {}]);
-    }
+    const handleAdd = () => { setData([...data, {}]) }
 
     const handleDelete = (index: number) => {
         setData(data.filter((_, i) => i !== index));
     }
 
-
-    const handleChange = () => {
-
-    }
-    // const handleChange = ({ index, field, value }: { index: number, field: TableInputField, value: string | number }) => {
-    //     const values = [...data];
-    //     values[index] = { ...values[index], [field.name]: value };
-    //     setData(values);
-    //     onChange?.(values);
-    // }
     return (
         <div>
-            <div className="border rounded-md">
+            <div className="border border-input rounded-md">
                 <div className="bg-gray-50">
                     <div className="flex">
-                        <div className="basis-1/12 px-2 flex items-center justify-center">
+                        <div className="basis-1/12 shrink-0 px-2 flex items-center justify-center">
                             <div className="text-sm">No.</div>
                         </div>
+
                         {fields.map((field) => (
                             <div key={field.name} className="basis-full">
-                                <div className="text-sm px-2 py-2 border-x ">
+                                <div className="text-sm px-2 py-2 border-input border-x ">
                                     {field.label}
                                     {field.required && <span className="text-red-500 ml-1">*</span>}
                                 </div>
@@ -102,17 +82,17 @@ export const TableInput: React.FC<TableInputProps> = ({ fields, onChange }) => {
 
                 {
                     !data || data?.length == 0 ? <EmptyTable /> : data.map((_, i) => (
-                        <div className="border-b last:border-none" key={i}>
-                            <div className="flex items-center">
+                        <div className="border-b border-input last:border-none" key={i}>
+                            <div className="flex items-center h-12">
 
-                                <div className="basis-1/12 px-2">
-                                    <div className="text-sm text-center">{i + 1}</div>
+                                <div className="basis-1/12 shrink-0 px-2 flex items-center justify-center">
+                                    <div className="text-sm">{i + 1}</div>
                                 </div>
 
                                 {fields.map((field, j) => (
                                     <div className="basis-full " key={j}>
-                                        <div className="border-x">
-                                            <div className="focus-within:ring-1 focus-within:ring-primary/50 ">
+                                        <div className="border-x border-input">
+                                            <div className="focus-within:ring-1 ring-offset-1 ring-ring">
                                                 <FormField
                                                     field={field}
                                                 />
@@ -150,3 +130,4 @@ export const TableInput: React.FC<TableInputProps> = ({ fields, onChange }) => {
     )
 
 }
+

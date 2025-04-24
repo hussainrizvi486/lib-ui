@@ -11,6 +11,7 @@ html {
     --color-popover: oklch(1 0 0);
     --color-accent: oklch(0.967 0.001 286.375);
     --color-primary: oklch(0.723 0.219 149.579);
+    --color-primary-foreground: oklch(0.982 0.018 155.826);
     --color-destructive: oklch(0.577 0.245 27.325);
     --color-input: oklch(0.92 0.004 286.32);
     --color-ring: oklch(0.723 0.219 149.579);

@@ -12,12 +12,13 @@ import {
 import { Input } from "@components/ui/input"
 import { Checkbox } from "@components/ui/checkbox"
 import { ComboBox } from "@components/ui/combobox"
+import { TableInput } from "@components/table-input"
 
 
 export const DemoComponent = () => {
     return (
         <div className="p-2">
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-6xl mx-auto">
                 <div className="mb-12">
                     <SelectDemo />
                 </div>
@@ -33,6 +34,9 @@ export const DemoComponent = () => {
                     <ComboBoxDemo />
                 </div>
 
+                <div className="mb-12">
+                    <InputTable />
+                </div>
             </div>
         </div>
     )
@@ -86,12 +90,11 @@ function CheckboxDemo() {
                 <div className="ml-1 mb-2 text-sm text-muted-foreground font-semibold">Checkbox</div>
             </div>
 
-            <div className="mb-1 flex items-center">
+            <div className="mb-1 flex items-center ">
                 <Checkbox className="mr-2" id="checkbox-demo" />
-                <label className="text-sm text-muted-foreground select-none" htmlFor="checkbox-demo">Click to Disable</label>
+                <label className="text-sm text-muted-foreground select-none cursor-pointer" htmlFor="checkbox-demo">Click to Disable</label>
             </div>
 
-            {/* <div className="mb-2 text-sm text-muted-foreground">This is a checkbox component</div> */}
         </div>
     )
 }
@@ -99,6 +102,7 @@ function CheckboxDemo() {
 function ComboBoxDemo() {
     return (
         <div>
+            <div className="text-sm mb-2 ">Combobox </div>
             <ComboBox
                 options={[
                     { label: "Option 1", value: "option1" },
@@ -107,6 +111,22 @@ function ComboBoxDemo() {
                 ]}
                 placeholder="Select an option"
                 onChange={(value) => console.log("Selected:", value)}
+            />
+        </div>
+    )
+}
+
+function InputTable() {
+    return (
+        <div>
+            <TableInput
+                fields={[{
+                    "label": "Item Name",
+                    "name": "itemName",
+                    "type": "text",
+                    "placeholder": "Enter item name",
+                    "required": true,
+                }]}
             />
         </div>
     )
