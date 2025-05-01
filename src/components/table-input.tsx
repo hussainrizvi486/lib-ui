@@ -50,7 +50,7 @@ const EmptyTable = () => {
 }
 
 export const TableInput: React.FC<TableInputProps> = ({ fields }) => {
-    const [data, setData] = useState<TableInputValue>([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
+    const [data, setData] = useState<TableInputValue>([]);
 
     const handleAdd = () => { setData([...data, {}]) }
 
