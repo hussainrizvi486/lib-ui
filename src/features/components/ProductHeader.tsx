@@ -125,7 +125,6 @@ export const ProductHeader = () => {
           <div className="flex flex-col h-full justify-between">
             <div className='flex flex-col gap-5'>
               <div>
-                {/* Close Button */}
                 <div className="flex justify-end p-4">
                   <button
                     onClick={() => setMenuOpen(false)}

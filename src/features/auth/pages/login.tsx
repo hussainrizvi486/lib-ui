@@ -8,7 +8,6 @@ export const LoginPage = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        {/* Logo */}
         <div className="flex justify-center mb-6">
           <NavLink to="/" className="text-[1.25rem] font-bold">
             <span className="text-violet-500">Apex</span>
@@ -65,13 +64,11 @@ export const LoginPage = () => {
             apply.
           </div>
 
-          {/* Login Button */}
           <Button type="submit" className="w-full bg-gray-900 text-white py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500">
             LOGIN
           </Button>
         </form>
 
-        {/* OR Separator */}
         <div className="flex items-center justify-center my-4">
           <div className="border-t border-gray-300 w-1/3" />
           <span className="mx-2 text-gray-500 text-sm">OR</span>
@@ -97,7 +94,6 @@ export const LoginPage = () => {
           </Button>
         </div>
 
-        {/* Create Account Link */}
         <div className="text-center text-sm">
           <NavLink
             to="/register"

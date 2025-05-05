@@ -10,7 +10,6 @@ export const CategorySlider = () => {
     { name: 'Headsets & Earbuds' },
     { name: 'iPad Keyboard Cases' },
     { name: 'Driving' },
-    // Add the rest of your categories here
   ];
 
   const categoryImage =
